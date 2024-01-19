@@ -26,7 +26,7 @@
                      </div>
                      <div class="col-6">
                         <div class="text-end">
-                           <h3 class="text-dark mt-1">$<span data-plugin="counterup">{{ round($total_paid) }}</span></h3>
+                           <h3 class="text-dark mt-1">৳<span data-plugin="counterup">{{ round($total_paid) }}</span></h3>
                            <p class="text-muted mb-1 text-truncate">Total Paid </p>
                         </div>
                      </div>
@@ -48,7 +48,7 @@
                      </div>
                      <div class="col-6">
                         <div class="text-end">
-                           <h3 class="text-dark mt-1">$<span data-plugin="counterup">{{ $total_due  }}</span></h3>
+                           <h3 class="text-dark mt-1">৳<span data-plugin="counterup">{{ $total_due  }}</span></h3>
                            <p class="text-muted mb-1 text-truncate">Total Due </p>
                         </div>
                      </div>
@@ -71,7 +71,7 @@
                      <div class="col-6">
                         <div class="text-end">
                            <h3 class="text-dark mt-1"> <span data-plugin="counterup">{{ count($completeorder)  }}</span></h3>
-                           <p class="text-muted mb-1 text-truncate">Complete Order </p>
+                           <p class="text-muted mb-1 text-truncate">Complete Order</p>
                         </div>
                      </div>
                   </div>
@@ -93,7 +93,7 @@
                      <div class="col-6">
                         <div class="text-end">
                            <h3 class="text-dark mt-1"> <span data-plugin="counterup">{{ count($pendingorder)  }}</span></h3>
-                           <p class="text-muted mb-1 text-truncate">Pending Order </p>
+                           <p class="text-muted mb-1 text-truncate">Pending Order</p>
                         </div>
                      </div>
                   </div>
