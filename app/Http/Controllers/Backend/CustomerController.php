@@ -2,17 +2,20 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Exports\CustomerExport;
 use App\Http\Controllers\Controller;
+use App\Imports\CustomerImport;
 use Illuminate\Http\Request;
 use App\Models\Customer;
 use Intervention\Image\Facades\Image;
 use Carbon\Carbon;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CustomerController extends Controller
 {
      public function AllCustomer(){
 
-        $customer = Customer::latest()->get();
+        $customer = Customer::select(['id','image','name','email','phone','shopname'])->latest()->get();
         return view('backend.customer.all_customer',compact('customer'));
     } // End Method 
 
@@ -140,7 +143,7 @@ class CustomerController extends Controller
     } // End Method 
 
 
- public function DeleteCustomer($id){
+    public function DeleteCustomer($id){
 
         $customer_img = Customer::findOrFail($id);
         $img = $customer_img->image;
@@ -155,7 +158,34 @@ class CustomerController extends Controller
 
         return redirect()->back()->with($notification); 
 
-    } // End Method 
+    } // End Method
+    
+    public function ImportCustomer()
+    {
+        return view('backend.customer.import_customer');
+    }
+
+    public function ExportCustomer(){
+
+        return Excel::download(new CustomerExport,'customers.xlsx');
+
+    }// End Method 
+
+    public function ImportdataCustomer(Request $request){
+
+        $this->validate($request,[
+            'import_file'=>'required',
+        ]);
+
+        Excel::import(new CustomerImport, $request->file('import_file'));
+
+         $notification = array(
+            'message' => 'Customer Imported Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.customer')->with($notification); 
+    }// End Method 
 
 
 

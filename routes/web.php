@@ -56,7 +56,7 @@ Route::controller(EmployeeController::class)->group(function(){
   Route::get('/edit/employee/{id}','EditEmployee')->name('edit.employee');
   Route::post('/update/employee','UpdateEmployee')->name('employee.update');
   Route::get('/delete/employee/{id}','DeleteEmployee')->name('delete.employee');
-
+  //Import-Export Route
   Route::get('/import/employee','ImportEmployee')->name('import.employee');
   Route::get('/export/employee','ExportEmployee')->name('export.employee');
   Route::post('/import/insert','Importdata')->name('import.insert');
@@ -71,6 +71,10 @@ Route::controller(CustomerController::class)->group(function(){
   Route::get('/edit/customer/{id}','EditCustomer')->name('edit.customer');
   Route::post('/update/customer','UpdateCustomer')->name('customer.update');
   Route::get('/delete/customer/{id}','DeleteCustomer')->name('delete.customer');
+  //Import-Export Route
+  Route::get('/import/customer','ImportCustomer')->name('import.customer');
+  Route::get('/export/customer','ExportCustomer')->name('export.customer');
+  Route::post('/import/insert/customer','ImportdataCustomer')->name('import.insert.customer');
 });
 
 
