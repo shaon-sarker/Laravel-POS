@@ -150,7 +150,6 @@ class ProductController extends Controller
             'message' => 'Product Deleted Successfully',
             'alert-type' => 'success'
         );
-
         return redirect()->back()->with($notification); 
 
     } // End Method 

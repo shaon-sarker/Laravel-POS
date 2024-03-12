@@ -10,10 +10,10 @@
             <div class="page-title-box">
                <div class="page-title-right">
                   <ol class="breadcrumb m-0">
-                     <a href="{{ route('export.product') }}" class="btn btn-primary rounded-pill waves-effect waves-light">Download Xlsx</a>  
+                     <a href="{{ route('export.employee') }}" class="btn btn-primary rounded-pill waves-effect waves-light">Download Xlsx</a>  
                   </ol>
                </div>
-               <h4 class="page-title">Import Product</h4>
+               <h4 class="page-title">Import Employee</h4>
             </div>
          </div>
       </div>
@@ -24,7 +24,7 @@
                <div class="card-body">
                   <!-- end timeline content-->
                   <div class="tab-pane" id="settings">
-                     <form method="post" action="{{ route('import') }}" enctype="multipart/form-data">
+                     <form method="post" action="{{ route('import.insert') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                            <div class="col-md-12">

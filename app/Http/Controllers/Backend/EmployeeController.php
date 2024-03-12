@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Exports\EmployeeExport;
 use App\Http\Controllers\Controller;
+use App\Imports\EmployeeImport;
 use Illuminate\Http\Request;
 use App\Models\Employee;
 use Intervention\Image\Facades\Image;
 use Carbon\Carbon;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class EmployeeController extends Controller
 {
@@ -75,16 +79,13 @@ class EmployeeController extends Controller
     public function UpdateEmployee(Request $request){
 
         $employee_id = $request->id;
-
         if ($request->file('image')) {
-
         $image = $request->file('image');
         $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
         Image::make($image)->resize(300,300)->save('upload/employee/'.$name_gen);
         $save_url = 'upload/employee/'.$name_gen;
 
         Employee::findOrFail($employee_id)->update([
-
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
@@ -95,20 +96,15 @@ class EmployeeController extends Controller
             'city' => $request->city,
             'image' => $save_url,
             'created_at' => Carbon::now(), 
-
         ]);
-
          $notification = array(
             'message' => 'Employee Updated Successfully',
             'alert-type' => 'success'
         );
-
         return redirect()->route('all.employee')->with($notification); 
-             
-        } else{
-
+        } 
+        else{
             Employee::findOrFail($employee_id)->update([
-
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
@@ -118,14 +114,11 @@ class EmployeeController extends Controller
             'vacation' => $request->vacation,
             'city' => $request->city, 
             'created_at' => Carbon::now(), 
-
         ]);
-
          $notification = array(
             'message' => 'Employee Updated Successfully',
             'alert-type' => 'success'
         );
-
         return redirect()->route('all.employee')->with($notification); 
 
         } // End else Condition  
@@ -139,18 +132,40 @@ class EmployeeController extends Controller
         $employee_img = Employee::findOrFail($id);
         $img = $employee_img->image;
         unlink($img);
-
         Employee::findOrFail($id)->delete();
-
         $notification = array(
             'message' => 'Employee Deleted Successfully',
             'alert-type' => 'success'
         );
-
         return redirect()->back()->with($notification); 
-
     } // End Method 
 
+    public function ImportEmployee()
+    {
+        return view('backend.employee.import_employee');
+    }
+
+    public function ExportEmployee(){
+
+        return Excel::download(new EmployeeExport,'employees.xlsx');
+
+    }// End Method 
+
+    public function Importdata(Request $request){
+
+        $this->validate($request,[
+            'import_file'=>'required',
+        ]);
+
+        Excel::import(new EmployeeImport, $request->file('import_file'));
+
+         $notification = array(
+            'message' => 'Employee Imported Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.employee')->with($notification); 
+    }// End Method 
 
 
 

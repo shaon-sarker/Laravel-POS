@@ -56,6 +56,10 @@ Route::controller(EmployeeController::class)->group(function(){
   Route::get('/edit/employee/{id}','EditEmployee')->name('edit.employee');
   Route::post('/update/employee','UpdateEmployee')->name('employee.update');
   Route::get('/delete/employee/{id}','DeleteEmployee')->name('delete.employee');
+
+  Route::get('/import/employee','ImportEmployee')->name('import.employee');
+  Route::get('/export/employee','ExportEmployee')->name('export.employee');
+  Route::post('/import/insert','Importdata')->name('import.insert');
 });
 
 
@@ -96,7 +100,6 @@ Route::controller(SalaryController::class)->group(function(){
 Route::controller(SalaryController::class)->group(function(){
   Route::get('/pay/salary','PaySalary')->name('pay.salary');
   Route::get('/pay/now/salary/{id}','PayNowSalary')->name('pay.now.salary');
-  // Route::post('/pay/employe/salary/update/{id}','EmployeSalaryStore');
   Route::post('/pay/employe/salary/update/','EmployeSalaryStore')->name('employe.salary.store');
   Route::get('/month/salary','MonthSalary')->name('month.salary');
 });
@@ -132,7 +135,7 @@ Route::controller(ProductController::class)->group(function(){
   Route::get('/delete/product/{id}','DeleteProduct')->name('delete.product');
   Route::get('/barcode/product/{id}','BarcodeProduct')->name('barcode.product');
   Route::get('/import/product','ImportProduct')->name('import.product');
-  Route::get('/export','Export')->name('export');
+  Route::get('/export','Export')->name('export.product');
   Route::post('/import','Import')->name('import');
 });
 
