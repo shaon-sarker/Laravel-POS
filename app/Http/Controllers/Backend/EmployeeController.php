@@ -15,7 +15,7 @@ use Maatwebsite\Excel\Facades\Excel;
 class EmployeeController extends Controller
 {
     public function AllEmployee(){
-        $employee = Employee::latest()->get();
+        $employee = Employee::select(['id','name','email','phone','salary','image'])->latest()->get();
         return view('backend.employee.all_employee',compact('employee'));
     } // End Method 
 
@@ -26,7 +26,7 @@ class EmployeeController extends Controller
 
     public function StoreEmployee(Request $request){
 
-        $validateData = $request->validate([
+        $this->validate($request,[
             'name' => 'required|max:200',
             'email' => 'required|unique:employees|max:200',
             'phone' => 'required|max:200',
@@ -34,7 +34,7 @@ class EmployeeController extends Controller
             'salary' => 'required|max:200',
             'vacation' => 'required|max:200', 
             'experience' => 'required', 
-            'image' => 'required',  
+            'image' => 'required', 
         ]);
  
         $image = $request->file('image');
@@ -138,7 +138,12 @@ class EmployeeController extends Controller
             'alert-type' => 'success'
         );
         return redirect()->back()->with($notification); 
-    } // End Method 
+    } // End Method
+    
+    public function DetailsEmployee($id){
+        $employee = Employee::findOrFail($id);
+        return view('backend.employee.details_employee',compact('employee'));
+    } // End Method
 
     public function ImportEmployee()
     {

@@ -27,7 +27,7 @@ class CustomerController extends Controller
 
      public function StoreCustomer(Request $request){
 
-        $validateData = $request->validate([
+        $this->validate($request,[
             'name' => 'required|max:200',
             'email' => 'required|unique:customers|max:200',
             'phone' => 'required|max:200',
@@ -35,7 +35,7 @@ class CustomerController extends Controller
             'shopname' => 'required|max:200',
             'account_holder' => 'required|max:200', 
             'account_number' => 'required', 
-            'image' => 'required',  
+            'image' => 'required', 
         ]);
  
         $image = $request->file('image');
@@ -158,6 +158,11 @@ class CustomerController extends Controller
 
         return redirect()->back()->with($notification); 
 
+    } // End Method
+
+    public function DetailsCustomer($id){
+        $customer = Customer::findOrFail($id);
+        return view('backend.customer.details_customer',compact('customer'));
     } // End Method
     
     public function ImportCustomer()

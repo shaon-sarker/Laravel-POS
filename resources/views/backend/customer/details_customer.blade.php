@@ -10,11 +10,11 @@
             <div class="page-title-box">
                <div class="page-title-right">
                   <ol class="breadcrumb m-0">
-                     <li class="breadcrumb-item"><a href="javascript: void(0);">Details Supplier</a></li>
+                     <li class="breadcrumb-item"><a href="javascript: void(0);">Details Customer</a></li>
                      <br>
                   </ol>
                </div>
-               <h4 class="page-title">Details Supplier</h4>
+               <h4 class="page-title">Details Customer</h4>
             </div>
          </div>
       </div>
@@ -24,83 +24,83 @@
             <div class="card">
                <div class="card-body">
                   <!-- end timeline content-->
-                  <a href="{{ route('all.supplier') }}" class="btn btn-blue rounded-pill waves-effect waves-light" title="Back">Back</a>
+                  <a href="{{ route('all.customer') }}" class="btn btn-blue rounded-pill waves-effect waves-light" title="Back">Back</a>
                   <div class="tab-pane" id="settings">
-                     <form method="post" action="{{ route('supplier.update') }}" enctype="multipart/form-data">
+                     {{-- <form method="post" action="{{ route('supplier.update') }}" enctype="multipart/form-data">
                         @csrf
-                        <input type="hidden" name="id" value="{{ $supplier->id }}"> 
+                        <input type="hidden" name="id" value="{{ $supplier->id }}">  --}}
                         <h5 class="mb-4 text-uppercase"><i class="mdi mdi-account-circle me-1"></i> Details Supplier</h5>
                         <div class="row">
                            <div class="col-md-6">
                               <div class="mb-3">
-                                 <label for="firstname" class="form-label">Supplier Name</label>
-                                 <p class="text-white">{{ $supplier->name }}</p>
+                                 <label for="firstname" class="form-label">Customer Name</label>
+                                 <p class="text-white">{{ $customer->name }}</p>
                               </div>
                            </div>
                            <div class="col-md-6">
                               <div class="mb-3">
-                                 <label for="firstname" class="form-label">Supplier Email</label>
-                                 <p class="text-white">{{ $supplier->email }}</p>
+                                 <label for="firstname" class="form-label">Customer Email</label>
+                                 <p class="text-white">{{ $customer->email }}</p>
                               </div>
                            </div>
                            <div class="col-md-6">
                               <div class="mb-3">
-                                 <label for="firstname" class="form-label">Supplier Phone    </label>
-                                 <p class="text-white">{{ $supplier->phone }}</p>
+                                 <label for="firstname" class="form-label">Customer Phone</label>
+                                 <p class="text-white">{{ $customer->phone }}</p>
                               </div>
                            </div>
                            <div class="col-md-6">
                               <div class="mb-3">
-                                 <label for="firstname" class="form-label">Supplier Address    </label>
-                                 <p class="text-white">{{ $supplier->address }}</p>
+                                 <label for="firstname" class="form-label">Customer Address</label>
+                                 <p class="text-white">{{ $customer->address }}</p>
                               </div>
                            </div>
                            <div class="col-md-6">
                               <div class="mb-3">
-                                 <label for="firstname" class="form-label">Supplier Shop Name    </label>
-                                 <p class="text-white">{{ $supplier->shopname }}</p>
+                                 <label for="firstname" class="form-label">Customer Shop Name</label>
+                                 <p class="text-white">{{ $customer->shopname }}</p>
+                              </div>
+                           </div>
+                           {{-- <div class="col-md-6">
+                              <div class="mb-3">
+                                 <label for="firstname" class="form-label">Customer Type</label>
+                                 <p class="text-white">{{ $customer->type }}</p>
+                              </div>
+                           </div> --}}
+                           <div class="col-md-6">
+                              <div class="mb-3">
+                                 <label for="firstname" class="form-label">Account Holder </label>
+                                 <p class="text-white">{{ $customer->account_holder }}</p>
                               </div>
                            </div>
                            <div class="col-md-6">
                               <div class="mb-3">
-                                 <label for="firstname" class="form-label">Supplier Type   </label>
-                                 <p class="text-white">{{ $supplier->type }}</p>
+                                 <label for="firstname" class="form-label">Account Number </label>
+                                 <p class="text-white">{{ $customer->account_number }}</p>
                               </div>
                            </div>
                            <div class="col-md-6">
                               <div class="mb-3">
-                                 <label for="firstname" class="form-label">Account Holder    </label>
-                                 <p class="text-white">{{ $supplier->account_holder }}</p>
+                                 <label for="firstname" class="form-label">Bank Name</label>
+                                 <p class="text-white">{{ $customer->bank_name }}</p>
                               </div>
                            </div>
                            <div class="col-md-6">
                               <div class="mb-3">
-                                 <label for="firstname" class="form-label">Account Number    </label>
-                                 <p class="text-white">{{ $supplier->account_number }}</p>
+                                 <label for="firstname" class="form-label">Bank Branch</label>
+                                 <p class="text-white">{{ $customer->bank_branch }}</p>
                               </div>
                            </div>
                            <div class="col-md-6">
                               <div class="mb-3">
-                                 <label for="firstname" class="form-label">Bank Name    </label>
-                                 <p class="text-white">{{ $supplier->bank_name }}</p>
-                              </div>
-                           </div>
-                           <div class="col-md-6">
-                              <div class="mb-3">
-                                 <label for="firstname" class="form-label">Bank Branch    </label>
-                                 <p class="text-white">{{ $supplier->bank_branch }}</p>
-                              </div>
-                           </div>
-                           <div class="col-md-6">
-                              <div class="mb-3">
-                                 <label for="firstname" class="form-label">Supplier City    </label>
-                                 <p class="text-white">{{ $supplier->city }}</p>
+                                 <label for="firstname" class="form-label">Customer City</label>
+                                 <p class="text-white">{{ $customer->city }}</p>
                               </div>
                            </div>
                            <div class="col-md-12">
                               <div class="mb-3">
                                  <label for="example-fileinput" class="form-label"> </label>
-                                 <img id="showImage" src="{{  asset($supplier->image) }}" class="rounded-circle avatar-lg img-thumbnail"
+                                 <img id="showImage" src="{{  asset($customer->image) }}" class="rounded-circle avatar-lg img-thumbnail"
                                     alt="profile-image">
                               </div>
                            </div>

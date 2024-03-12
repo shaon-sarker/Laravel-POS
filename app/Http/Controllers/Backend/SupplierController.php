@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Exports\SupplierExport;
 use App\Http\Controllers\Controller;
+use App\Imports\SupplierImport;
 use Illuminate\Http\Request;
 use App\Models\Supplier;
 use Intervention\Image\Facades\Image;
 use Carbon\Carbon;
+use Maatwebsite\Excel\Facades\Excel;
 
 class SupplierController extends Controller
 {
     public function AllSupplier(){
-
-        $supplier = Supplier::latest()->get();
+        $supplier = Supplier::select(['id','name','email','phone','type','image'])->latest()->get();
         return view('backend.supplier.all_supplier',compact('supplier'));
 
     } // End Method 
@@ -24,9 +26,9 @@ class SupplierController extends Controller
 
 
 
-     public function StoreSupplier(Request $request){
+    public function StoreSupplier(Request $request){
 
-        $validateData = $request->validate([
+        $this->validate($request,[
             'name' => 'required|max:200',
             'email' => 'required|unique:customers|max:200',
             'phone' => 'required|max:200',
@@ -35,7 +37,7 @@ class SupplierController extends Controller
             'account_holder' => 'required|max:200', 
             'account_number' => 'required', 
             'type' => 'required', 
-            'image' => 'required',  
+            'image' => 'required',
         ]);
  
         $image = $request->file('image');
@@ -69,8 +71,7 @@ class SupplierController extends Controller
         return redirect()->route('all.supplier')->with($notification); 
     } // End Method 
 
-
- public function EditSupplier($id){
+    public function EditSupplier($id){
 
         $supplier = Supplier::findOrFail($id);
         return view('backend.supplier.edit_supplier',compact('supplier'));
@@ -115,10 +116,10 @@ class SupplierController extends Controller
 
         return redirect()->route('all.supplier')->with($notification); 
              
-        } else{
-
+        } 
+        else
+        {
             Supplier::findOrFail($supplier_id)->update([
-
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
@@ -148,7 +149,7 @@ class SupplierController extends Controller
 
 
 
- public function DeleteSupplier($id){
+    public function DeleteSupplier($id){
 
         $supplier_img = Supplier::findOrFail($id);
         $img = $supplier_img->image;
@@ -160,17 +161,42 @@ class SupplierController extends Controller
             'message' => 'Supplier Deleted Successfully',
             'alert-type' => 'success'
         );
-
         return redirect()->back()->with($notification); 
 
-    } // End Method 
+        } // End Method 
 
- public function DetailsSupplier($id){
-
+    public function DetailsSupplier($id){
         $supplier = Supplier::findOrFail($id);
         return view('backend.supplier.details_supplier',compact('supplier'));
 
-    } // End Method 
+    } // End Method
+    
+    public function ImportSupplier()
+    {
+        return view('backend.supplier.import_supplier');
+    }
+
+    public function ExportSupplier(){
+
+        return Excel::download(new SupplierExport,'suppliers.xlsx');
+
+    }// End Method 
+
+    public function ImportdataSupplier(Request $request){
+
+        $this->validate($request,[
+            'import_file'=>'required',
+        ]);
+
+        Excel::import(new SupplierImport, $request->file('import_file'));
+
+         $notification = array(
+            'message' => 'Supplier Imported Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.supplier')->with($notification); 
+    }// End Method 
 
 }
  

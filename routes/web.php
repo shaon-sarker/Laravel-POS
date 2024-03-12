@@ -46,8 +46,6 @@ Route::post('/admin/profile/store', [AdminController::class, 'AdminProfileStore'
 Route::get('/change/password', [AdminController::class, 'ChangePassword'])->name('change.password');
 Route::post('/update/password', [AdminController::class, 'UpdatePassword'])->name('update.password');
 
-
-
 /// Employee All Route 
 Route::controller(EmployeeController::class)->group(function(){
   Route::get('/all/employee','AllEmployee')->name('all.employee');
@@ -56,6 +54,7 @@ Route::controller(EmployeeController::class)->group(function(){
   Route::get('/edit/employee/{id}','EditEmployee')->name('edit.employee');
   Route::post('/update/employee','UpdateEmployee')->name('employee.update');
   Route::get('/delete/employee/{id}','DeleteEmployee')->name('delete.employee');
+  Route::get('/details/employee/{id}','DetailsEmployee')->name('details.employee');
   //Import-Export Route
   Route::get('/import/employee','ImportEmployee')->name('import.employee');
   Route::get('/export/employee','ExportEmployee')->name('export.employee');
@@ -71,6 +70,7 @@ Route::controller(CustomerController::class)->group(function(){
   Route::get('/edit/customer/{id}','EditCustomer')->name('edit.customer');
   Route::post('/update/customer','UpdateCustomer')->name('customer.update');
   Route::get('/delete/customer/{id}','DeleteCustomer')->name('delete.customer');
+  Route::get('/details/customer/{id}','DetailsCustomer')->name('details.customer');
   //Import-Export Route
   Route::get('/import/customer','ImportCustomer')->name('import.customer');
   Route::get('/export/customer','ExportCustomer')->name('export.customer');
@@ -87,6 +87,10 @@ Route::controller(SupplierController::class)->group(function(){
   Route::post('/update/supplier','UpdateSupplier')->name('supplier.update');
   Route::get('/delete/supplier/{id}','DeleteSupplier')->name('delete.supplier');
   Route::get('/details/supplier/{id}','DetailsSupplier')->name('details.supplier');
+  //Import-Export Route
+  Route::get('/import/supplier','ImportSupplier')->name('import.supplier');
+  Route::get('/export/supplier','ExportSupplier')->name('export.supplier');
+  Route::post('/import/insert/supplier','ImportdataSupplier')->name('import.insert.supplier');
 });
 
 

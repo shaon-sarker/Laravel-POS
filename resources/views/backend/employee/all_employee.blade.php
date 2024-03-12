@@ -47,12 +47,13 @@
                            <td>{{ $item->phone }}</td>
                            <td>{{ $item->salary }}</td>
                            <td>
-                              @if(Auth::user()->can('employee.edit'))                  
-                              <a href="{{ route('edit.employee',$item->id) }}" class="btn btn-blue rounded-pill waves-effect waves-light">Edit</a>
+                              @if(Auth::user()->can('employee.edit'))
+                              <a href="{{ route('edit.employee',$item->id) }}" class="btn btn-blue rounded-pill waves-effect waves-light" title="Edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                               @endif
                               @if(Auth::user()->can('employee.delete'))
-                              <a href="{{ route('delete.employee',$item->id) }}" class="btn btn-danger rounded-pill waves-effect waves-light" id="delete">Delete</a>
+                              <a href="{{ route('delete.employee',$item->id) }}" class="btn btn-danger rounded-pill waves-effect waves-light" id="delete" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a>
                               @endif
+                              <a href="{{ route('details.employee',$item->id) }}" class="btn btn-info rounded-pill waves-effect waves-light" title="Details"><i class="fa fa-eye" aria-hidden="true"></i></a>
                            </td>
                         </tr>
                         @endforeach
