@@ -14,7 +14,7 @@
              @if(Auth::user()->can('pos.menu'))
              <li>
                 <a href="{{ route('pos') }}">
-                <i class="mdi mdi-view-dashboard-outline"></i>
+                <i class="mdi mdi-cart-outline"></i>
                 <span> POS </span>
                 </a>
              </li>
@@ -23,7 +23,7 @@
              @if(Auth::user()->can('employee.menu'))
              <li>
                 <a href="#sidebarEcommerce" data-bs-toggle="collapse">
-                <i class="mdi mdi-cart-outline"></i>
+                <i class="mdi mdi-account-multiple-outline"></i>
                 <span> Employee Manage  </span>
                 <span class="menu-arrow"></span>
                 </a>
@@ -47,7 +47,7 @@
              <li>
                 <a href="#sidebarCrm" data-bs-toggle="collapse">
                 <i class="mdi mdi-account-multiple-outline"></i>
-                <span> Customer Manage   </span>
+                <span> Customer Manage </span>
                 <span class="menu-arrow"></span>
                 </a>
                 <div class="collapse" id="sidebarCrm">
@@ -69,7 +69,7 @@
              @if(Auth::user()->can('supplier.menu'))
              <li>
                 <a href="#sidebarEmail" data-bs-toggle="collapse">
-                <i class="mdi mdi-email-multiple-outline"></i>
+                <i class="mdi mdi-account-multiple-outline"></i>
                 <span> Supplier Manage </span>
                 <span class="menu-arrow"></span>
                 </a>
@@ -272,20 +272,6 @@
                 </div>
              </li>
              @endif
-             {{-- <li>
-                <a href="#backup" data-bs-toggle="collapse">
-                <i class="mdi mdi-account-circle-outline"></i>
-                <span>Database Backup  </span>
-                <span class="menu-arrow"></span>
-                </a>
-                <div class="collapse" id="backup">
-                   <ul class="nav-second-level">
-                      <li>
-                         <a href="{{ route('database.backup') }}">Database Backup </a>
-                      </li>
-                   </ul>
-                </div>
-             </li> --}}
           </ul>
        </div>
        </li>

@@ -13,7 +13,7 @@
                      <li class="breadcrumb-item"><a href="javascript: void(0);">Paid Salary </a></li>
                   </ol>
                </div>
-               <h4 class="page-title">Paid Salary </h4>
+               <h4 class="page-title">Paid Salary</h4>
             </div>
          </div>
       </div>
@@ -27,11 +27,12 @@
                      <form method="post" action="{{ route('employe.salary.store') }}" >
                         @csrf
                         <input type="hidden" name="id" value="{{ $paysalary->id }}">
+                        {{-- <input type="text" name="id" value="{{ $paysalary2->id }}"> --}}
                         <h5 class="mb-4 text-uppercase"><i class="mdi mdi-account-circle me-1"></i> Paid Salary </h5>
                         <div class="row">
                            <div class="col-md-6">
                               <div class="mb-3">
-                                 <label for="firstname" class="form-label">Employee Name    </label>
+                                 <label for="firstname" class="form-label">Employee Name</label>
                                  <strong style="color: #fff;">{{ $paysalary->name }}</strong>
                               </div>
                            </div>
@@ -44,7 +45,7 @@
                            </div>
                            <div class="col-md-6">
                               <div class="mb-3">
-                                 <label for="firstname" class="form-label">Employe Salary    </label>
+                                 <label for="firstname" class="form-label">Employe Salary</label>
                                  <strong style="color: #fff;">{{ $paysalary->salary }}</strong>
                                  <input type="hidden" name="paid_amount" value="{{ $paysalary->salary }}">
                               </div>

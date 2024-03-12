@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('personal_access_tokens', function (Blueprint $table) {
             $table->id();
-             
             $table->timestamps();
         });
     }

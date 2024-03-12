@@ -96,7 +96,8 @@ Route::controller(SalaryController::class)->group(function(){
 Route::controller(SalaryController::class)->group(function(){
   Route::get('/pay/salary','PaySalary')->name('pay.salary');
   Route::get('/pay/now/salary/{id}','PayNowSalary')->name('pay.now.salary');
-  Route::post('/employe/salary/store','EmployeSalaryStore')->name('employe.salary.store');
+  // Route::post('/pay/employe/salary/update/{id}','EmployeSalaryStore');
+  Route::post('/pay/employe/salary/update/','EmployeSalaryStore')->name('employe.salary.store');
   Route::get('/month/salary','MonthSalary')->name('month.salary');
 });
 
@@ -222,5 +223,4 @@ Route::controller(AdminController::class)->group(function(){
   Route::post('/update/admin','UpdateAdmin')->name('admin.update');
   Route::get('/delete/admin/{id}','DeleteAdmin')->name('delete.admin');
 });
-
 }); // End User Middleware 

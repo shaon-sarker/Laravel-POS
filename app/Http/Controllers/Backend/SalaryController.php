@@ -21,7 +21,7 @@ class SalaryController extends Controller
 
     public function AdvanceSalaryStore(Request $request){
 
-        $validateData = $request->validate([
+        $this->validate($request,[
             'month' => 'required',
             'year' => 'required', 
         ]);
@@ -30,9 +30,7 @@ class SalaryController extends Controller
         $employee_id = $request->employee_id;
 
         $advanced = AdvanceSalary::where('month',$month)->where('employee_id',$employee_id)->first();
-
         if ($advanced === NULL) {
-            
             AdvanceSalary::insert([
                 'employee_id' => $request->employee_id,
                 'month' => $request->month,
@@ -47,8 +45,6 @@ class SalaryController extends Controller
         );
 
         return redirect()->route('all.advance.salary')->with($notification); 
-
-
         } else{
 
              $notification = array(
@@ -70,8 +66,6 @@ class SalaryController extends Controller
 
     }// End Method 
 
-
-
     public function EditAdvanceSalary($id){
         $employee = Employee::latest()->get();
         $salary = AdvanceSalary::findOrFail($id);
@@ -79,12 +73,10 @@ class SalaryController extends Controller
 
     }// End Method 
 
-
     public function AdvanceSalaryUpdate(Request $request){
 
         $salary_id = $request->id;
-
-         AdvanceSalary::findOrFail($salary_id)->update([
+        AdvanceSalary::findOrFail($salary_id)->update([
                 'employee_id' => $request->employee_id,
                 'month' => $request->month,
                 'year' => $request->year,
@@ -106,51 +98,40 @@ class SalaryController extends Controller
 
 
     public function PaySalary(){
-
         $employee = Employee::latest()->get();
         return view('backend.salary.pay_salary',compact('employee'));
     }// End Method 
-
 
     public function PayNowSalary($id){
 
         $paysalary = Employee::findOrFail($id);
         return view('backend.salary.paid_salary',compact('paysalary'));
-
     }// End Method 
 
 
     public function EmployeSalaryStore(Request $request){
         
         $employee_id = $request->id;
-
         PaySalary::insert([
-
             'employee_id' => $employee_id,
             'salary_month' => $request->month,
             'paid_amount' => $request->paid_amount,
             'advance_salary' => $request->advance_salary,
             'due_salary' => $request->due_salary,
             'created_at' => Carbon::now(),
-
         ]);
-
        $notification = array(
             'message' => 'Employee Salary Paid Successfully',
             'alert-type' => 'success'
         );
 
         return redirect()->route('pay.salary')->with($notification); 
-
-
     }// End Method 
 
 
     public function MonthSalary(){
-
         $paidsalary = PaySalary::latest()->get();
         return view('backend.salary.month_salary',compact('paidsalary'));
-
     }// End Method 
 
 }
