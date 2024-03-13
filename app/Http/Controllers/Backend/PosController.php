@@ -29,7 +29,6 @@ class PosController extends Controller
             'weight' => 20, 
             'options' => ['size' => 'large']]);
 
-
          $notification = array(
             'message' => 'Product Added Successfully',
             'alert-type' => 'success'
@@ -44,7 +43,6 @@ class PosController extends Controller
     public function AllItem(){
 
         $product_item = Cart::content();
-
         return view('backend.pos.text_item',compact('product_item'));
 
     } // End Method 
