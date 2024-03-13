@@ -32,8 +32,6 @@
                <div class="page-title-right">
                   <ol class="breadcrumb m-0">
                      <h4>
-                         
-                         
                         <a href="{{ route('employee.attend.list') }}" class="btn btn-primary float-sm-right"> <i class="fas fa-list"></i>Employee Attendance List</a>
                      </h4>
                   </ol>
@@ -45,10 +43,6 @@
       <div class="row">
          <div class="col-12">
             <div class="card">
-             
-             
-               
-              
                <div class="card-body">
                   <form action="{{ route('employee.attend.store') }}" method="post" id="myForm">
                      @csrf
@@ -69,35 +63,31 @@
                               <th class="text-center btn absent_all" style="display: table-cell;background-color:#114190">Absent</th>
                            </tr>
                         </thead>
-    <tbody>
-       @foreach ($employees as $key => $employee)
-       <tr id="div {{$employee->id}}" class="text-center">
-          <input type="hidden" name="employee_id[]" value="{{$employee->id}}" class="employee_id">
-          <td>{{$key+1}}</td>
-          <td>{{$employee->name}}</td>
-          <td colspan="3">
-             <div class="switch-toggle switch-3 switch-candy">
-                <input class="present" id="present{{$key}}" name="attend_status{{$key}}" value="present" type="radio" checked="checked">
-
-                <label for="present{{$key}}">Present</label>
-                <input class="leave" id="leave{{$key}}" name="attend_status{{$key}}" value="Leave" type="radio">
-
-                <label for="leave{{$key}}">Leave</label>
-                <input class="absent" id="absent{{$key}}" name="attend_status{{$key}}" value="Absent" type="radio">
-
-                <label for="absent{{$key}}">Absent</label>
-                <a></a>
-             </div>
-          </td>
-       </tr>
-       @endforeach
-    </tbody>
- </table>
- <button type="submit" class="btn btn-success btn-sm"> Submit </button>
-</form>
-</div>
+                        <tbody>
+                           @foreach ($employees as $key => $employee)
+                           <tr id="div {{$employee->id}}" class="text-center">
+                              <input type="hidden" name="employee_id[]" value="{{$employee->id}}" class="employee_id">
+                              <td>{{$key+1}}</td>
+                              <td>{{$employee->name}}</td>
+                              <td colspan="3">
+                                 <div class="switch-toggle switch-3 switch-candy">
+                                    <input class="present" id="present{{$key}}" name="attend_status{{$key}}" value="present" type="radio" checked="checked">
+                                    <label for="present{{$key}}">Present</label>
+                                    <input class="leave" id="leave{{$key}}" name="attend_status{{$key}}" value="Leave" type="radio">
+                                    <label for="leave{{$key}}">Leave</label>
+                                    <input class="absent" id="absent{{$key}}" name="attend_status{{$key}}" value="Absent" type="radio">
+                                    <label for="absent{{$key}}">Absent</label>
+                                    <a></a>
+                                 </div>
+                              </td>
+                           </tr>
+                           @endforeach
+                        </tbody>
+                     </table>
+                     <button type="submit" class="btn btn-success btn-sm"> Submit </button>
+                  </form>
+               </div>
                <!-- end card body-->
-               
             </div>
             <!-- end card -->
          </div>
@@ -108,32 +98,29 @@
    <!-- container -->
 </div>
 <!-- content -->
-
 <script type="text/javascript">
-      $(document).on('click','.present',function(){
-      $(this).parents('tr').find('.datetime').css('pointer-events','none').css('background-color','#dee2e6').css('color','#495057');
-      });
-      $(document).on('click','.leave',function(){
-      $(this).parents('tr').find('.datetime').css('pointer-events','').css('background-color','white').css('color','#495057');
-      });
-      $(document).on('click','.absent',function(){
-      $(this).parents('tr').find('.datetime').css('pointer-events','none').css('background-color','#dee2e6').css('color','#dee2e6');
-      });
+   $(document).on('click','.present',function(){
+   $(this).parents('tr').find('.datetime').css('pointer-events','none').css('background-color','#dee2e6').css('color','#495057');
+   });
+   $(document).on('click','.leave',function(){
+   $(this).parents('tr').find('.datetime').css('pointer-events','').css('background-color','white').css('color','#495057');
+   });
+   $(document).on('click','.absent',function(){
+   $(this).parents('tr').find('.datetime').css('pointer-events','none').css('background-color','#dee2e6').css('color','#dee2e6');
+   });
 </script>
 <script type="text/javascript">
-      $(document).on('click','.present_all',function(){
-      $("input[value=Present]").prop('checked',true);
-      $('.datetime').css('ponter-events','none').css('background-color','#dee2e6').css('color','#495057');
-      });
-      $(document).on('click','.leave_all',function(){
-      $("input[value=Leave]").prop('checked',true);
-      $('.datetime').css('ponter-events','').css('background-color','white').css('color','#495057');
-      });
-      $(document).on('click','.absent_all',function(){
-      $("input[value=Absent]").prop('checked',true);
-      $('.datetime').css('ponter-events','none').css('background-color','#dee2e6').css('color','#dee2e6');
-      });
+   $(document).on('click','.present_all',function(){
+   $("input[value=Present]").prop('checked',true);
+   $('.datetime').css('ponter-events','none').css('background-color','#dee2e6').css('color','#495057');
+   });
+   $(document).on('click','.leave_all',function(){
+   $("input[value=Leave]").prop('checked',true);
+   $('.datetime').css('ponter-events','').css('background-color','white').css('color','#495057');
+   });
+   $(document).on('click','.absent_all',function(){
+   $("input[value=Absent]").prop('checked',true);
+   $('.datetime').css('ponter-events','none').css('background-color','#dee2e6').css('color','#dee2e6');
+   });
 </script>
-
-
 @endsection

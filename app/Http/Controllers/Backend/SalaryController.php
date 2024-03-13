@@ -15,7 +15,6 @@ class SalaryController extends Controller
 
         $employee = Employee::latest()->get();
         return view('backend.salary.add_advance_salary',compact('employee'));
-
     }// End Method 
 
 
@@ -92,7 +91,17 @@ class SalaryController extends Controller
         return redirect()->route('all.advance.salary')->with($notification); 
 
 
-    }// End Method 
+    }// End Method
+    
+    public function DeleteAdvanceSalary($id)
+    {
+        AdvanceSalary::findOrFail($id)->delete();
+        $notification = array(
+            'message' => 'Advanced Deleted Successfully',
+            'alert-type' => 'warning'
+        );
+        return redirect()->back()->with($notification); 
+    }
 
     //////////////////////// Pay Salary All Mehtod /////////////////
 

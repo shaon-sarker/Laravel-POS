@@ -161,14 +161,11 @@ class EmployeeController extends Controller
         $this->validate($request,[
             'import_file'=>'required',
         ]);
-
         Excel::import(new EmployeeImport, $request->file('import_file'));
-
-         $notification = array(
+        $notification = array(
             'message' => 'Employee Imported Successfully',
             'alert-type' => 'success'
         );
-
         return redirect()->route('all.employee')->with($notification); 
     }// End Method 
 

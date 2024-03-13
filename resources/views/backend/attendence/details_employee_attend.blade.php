@@ -37,7 +37,7 @@
                            <td> <img src="{{ asset($item->employee->image ?? '') }}" style="width:50px; height: 40px;"> </td>
                            <td>{{ $item['employee']['name'] ?? '' }}</td>
                            <td>{{ date('Y-m-d',strtotime($item->date))  }}</td>
-                           <td>{{  $item->attend_status }}</td>
+                           <td><strong style="color: white">{{  $item->attend_status }}</strong></td>
                         </tr>
                         @endforeach
                      </tbody>

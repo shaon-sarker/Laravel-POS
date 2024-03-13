@@ -18,15 +18,15 @@ class ProductController extends Controller
 {
    public function AllProduct(){
 
-    $product = Product::latest()->get();
+    $product = Product::select(['id','product_name','category_id','supplier_id','product_code','selling_price','product_image'])->latest()->get();
     return view('backend.product.all_product',compact('product'));
 
    } // End Method 
 
    public function AddProduct(){
 
-    $category = Category::latest()->get();
-    $supplier = Supplier::latest()->get();
+    $category = Category::select(['id','category_name'])->latest()->get();
+    $supplier = Supplier::select(['id','name'])->latest()->get();
     return view('backend.product.add_product',compact('category','supplier'));
    }// End Method 
 
@@ -40,7 +40,6 @@ class ProductController extends Controller
         $save_url = 'upload/product/'.$name_gen;
 
         Product::insert([
-
             'product_name' => $request->product_name,
             'category_id' => $request->category_id,
             'supplier_id' => $request->supplier_id,
@@ -67,8 +66,8 @@ class ProductController extends Controller
 
     public function EditProduct($id){
         $product = Product::findOrFail($id);
-        $category = Category::latest()->get();
-        $supplier = Supplier::latest()->get();
+        $category = Category::select(['id','category_name'])->latest()->get();
+        $supplier = Supplier::select(['id','name'])->latest()->get();
         return view('backend.product.edit_product',compact('product','category','supplier'));
     } // End Method 
 
